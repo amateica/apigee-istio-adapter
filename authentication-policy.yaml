@@ -1,0 +1,22 @@
+# Creates an Authentication policy and binds it to service.
+# The example forces requests to the "helloworld" service to have a valid JWT.
+# Configure issuer, jwks_uri, and services as appropriate.
+---
+# Define an Istio Auth Policy
+apiVersion: "authentication.istio.io/v1alpha1"
+kind: Policy
+metadata:
+  name: auth-spec
+  namespace: default
+spec:
+  targets:
+  - name: helloworld
+    ports:
+    - number: 5000
+  peers:
+  - mtls: {} 
+  origins:
+  - jwt:
+      issuer: https://demo-eu24-test.apigee.net/istio-auth/token
+      jwks_uri: https://demo-eu24-test.apigee.net/istio-auth/certs
+  principalBinding: USE_ORIGIN
