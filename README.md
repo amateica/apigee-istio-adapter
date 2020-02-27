@@ -111,7 +111,8 @@ the INGRESS_IP and INGRESS_PORT variables. Then, your GATEWAY_URL can be set wit
     export GATEWAY_URL=$INGRESS_HOST:$INGRESS_PORT
 
 Use this command to return the external IP address for the load balancer. This is the IP to use to call the test service:
-      kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.status.loadBalancer.ingress[0].ip}'	
+      
+	kubectl -n istio-system get service istio-ingressgateway -o jsonpath='{.status.loadBalancer.ingress[0].ip}'	
 	
 ## Configure Istio for the Apigee Adapter 
 
